@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Pedido {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private Long idPedido;
     @ManyToOne
     @JoinColumn(name = "cliente_autor_id_cliente")
@@ -26,7 +26,7 @@ public class Pedido {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Produto> produtos =  new ArrayList<>();
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ItemPedido> produtos =  new ArrayList<>();
 
 }
