@@ -7,6 +7,10 @@ import dev.ronan.pedido_restaurante.repository.ClienteRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class ClienteService {
 
@@ -33,5 +37,28 @@ public class ClienteService {
                 clienteSalvo.getNome(),
                 clienteSalvo.getEmail()
         );
+    }
+    
+    public List<ClienteResponseDTO> findAllClientes() {
+        List <Cliente> clientes = clienteRepository.findAll();
+
+        return clientes.stream()
+                .map(cliente -> new ClienteResponseDTO(
+                        cliente.getIdCliente(),
+                        cliente.getNome(),
+                        cliente.getEmail()
+                ))
+                .toList();
+    }
+
+    public ClienteResponseDTO clienteFindById(UUID idCliente) {
+        if (clienteRepository.findById(idCliente).isPresent()) {
+            Cliente cliente = clienteRepository.findById(idCliente).get();
+            return new ClienteResponseDTO(cliente.getIdCliente(), cliente.getNome(), cliente.getEmail());
+        }
+        else {
+            throw new RuntimeException("Usuário não encontrado!");
+        }
+
     }
 }
