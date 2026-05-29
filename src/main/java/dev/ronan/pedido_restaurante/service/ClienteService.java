@@ -26,7 +26,7 @@ public class ClienteService {
         clienteSalvo.setNome(clienteDTO.nome());
         clienteSalvo.setEmail(clienteDTO.email());
         clienteSalvo.setSenha(clienteDTO.senha());
-        clienteRepository.save(clienteSalvo);
+        clienteSalvo = clienteRepository.save(clienteSalvo);
 
         return new ClienteResponseDTO(
                 clienteSalvo.getIdCliente(),
