@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID idCliente;
     private String nome;
     private String email;

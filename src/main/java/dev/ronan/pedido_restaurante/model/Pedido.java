@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Pedido {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
     @ManyToOne
     @JoinColumn(name = "cliente_autor_id_cliente")
