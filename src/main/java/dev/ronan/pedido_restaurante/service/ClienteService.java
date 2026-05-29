@@ -16,7 +16,7 @@ public class ClienteService {
         this.clienteRepository = clienteRepository;
     }
 
-    ClienteResponseDTO cadastrarCliente(ClienteRequestDTO clienteDTO){
+    public ClienteResponseDTO cadastrarCliente(ClienteRequestDTO clienteDTO){
 
         if (clienteRepository.findByEmail(clienteDTO.email()).isPresent()) {
             throw new RuntimeException("Este e-mail já está cadastrado!");
